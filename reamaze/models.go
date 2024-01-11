@@ -302,22 +302,30 @@ type CreateConversationResponse struct {
 type CreateConversationRequest struct {
 	Conversation struct {
 		Subject             string        `json:"subject,omitempty"`
-		Category            string        `json:"category,omitempty" validate:"true"`
+		Category            string        `json:"category,omitempty"`
 		TagList             []string      `json:"tag_list,omitempty"`
 		Status              ReamazeStatus `json:"status,omitempty"`
 		SupressNotification bool          `json:"suppress_notifications,omitempty"` // You can optionally pass in a message[suppress_notifications] boolean attribute with a value of true to prevent Reamaze from sending any email (or integration) notifications related to this message.
 		SupressAutoresolve  bool          `json:"suppress_autoresolve,omitempty"`   // You can optionally pass in a message[suppress_autoresolve] boolean attribute with a value of true to prevent Reamaze from marking the conversation as resolved when message[user] is a staff user.
 		Data                interface{}   `json:"data,omitempty"`
 		Message             struct {
-			Body        string   `json:"body,omitempty" validate:"true"`
+			Body        string   `json:"body,omitempty"`
 			Attachment  string   `json:"attachment,omitempty"`
 			Attachments []string `json:"attachments,omitempty"`
 		} `json:"message,omitempty"`
 		User struct {
 			Name  string      `json:"name,omitempty"`
-			Email string      `json:"email,omitempty" validate:"true"`
+			Email string      `json:"email,omitempty"`
 			Data  interface{} `json:"data,omitempty"`
 		} `json:"user,omitempty"`
+	} `json:"conversation,omitempty"`
+}
+type UpdateConversationRequest struct {
+	Conversation struct {
+		TagList  []string      `json:"tag_list,omitempty"`
+		Status   ReamazeStatus `json:"status,omitempty"`
+		Data     interface{}   `json:"data,omitempty"`
+		Assignee string        `json:"assignee,omitempty"`
 	} `json:"conversation,omitempty"`
 }
 

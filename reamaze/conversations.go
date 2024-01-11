@@ -3,7 +3,6 @@ package reamaze
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
 	"net/url"
 )
@@ -31,8 +30,10 @@ func (c *Client) CreateConversation(req *CreateConversationRequest) (*CreateConv
 }
 
 // UpdateConversation updates a conversation
-func (c *Client) UpdateConversation() {
-	fmt.Printf("Method UpdateConversation not implemented")
+func (c *Client) UpdateConversation(slug string, req *UpdateConversationRequest) (*GetConversationResponse, error) {
+	var response *GetConversationResponse
+
+	return response, nil
 }
 
 // GetConversations retrieve conversations for the Brand
