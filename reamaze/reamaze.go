@@ -45,6 +45,7 @@ func NewClient(email, apiToken, brand string) (*Client, error) {
 	}, nil
 }
 
+// reamazeRequset is a wrapper on http client to authenticate and set proper headers
 func (c *Client) reamazeRequest(method string, endpoint string, payload []byte) ([]byte, error) {
 	// Setting up request
 	req, err := http.NewRequest(method, c.baseURL+endpoint, bytes.NewBuffer(payload))
