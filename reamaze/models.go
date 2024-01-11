@@ -326,6 +326,8 @@ type UpdateConversationRequest struct {
 		Status   ReamazeStatus `json:"status,omitempty"`
 		Data     interface{}   `json:"data,omitempty"`
 		Assignee string        `json:"assignee,omitempty"`
+		Category string        `json:"category,omitempty"`
+		Brand    string        `json:"brand,omitempty"`
 	} `json:"conversation,omitempty"`
 }
 

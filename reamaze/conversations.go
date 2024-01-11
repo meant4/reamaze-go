@@ -5,6 +5,7 @@ import (
 	"errors"
 	"net/http"
 	"net/url"
+	"reflect"
 )
 
 // CreateConversation is creating new conversation in reamaze
@@ -34,7 +35,7 @@ func (c *Client) UpdateConversation(slug string, req *UpdateConversationRequest)
 	var response *GetConversationResponse
 	emptyReq := &UpdateConversationRequest{}
 	// checking if we don't have empty request
-	if req == emptyReq {
+	if reflect.DeepEqual(req, emptyReq) {
 		return nil, errors.New("incorrect request, UpdateConversationRequest empty")
 	}
 	// checking if we have slug set

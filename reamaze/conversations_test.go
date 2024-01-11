@@ -285,3 +285,117 @@ func TestClient_GetConversations(t *testing.T) {
 		})
 	}
 }
+
+func TestClient_UpdateConversation(t *testing.T) {
+	updateConversationReq := &UpdateConversationRequest{}
+	updateConversationReq.Conversation.Status = ReamazeStatusArchived
+	type fields struct {
+		baseURL    string
+		auth       string
+		httpClient *http.Client
+	}
+	type args struct {
+		slug string
+		req  *UpdateConversationRequest
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *GetConversationResponse
+		wantErr bool
+	}{
+		{
+			name: "Testing no empty slug argument passed to UpdateConversation",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Status:     "200 OK",
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+					}
+				}),
+			}},
+			args:    args{slug: "", req: updateConversationReq},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name: "Testing correct slug and empty UpdateConversationRequest",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Status:     "200 OK",
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+					}
+				}),
+			}},
+			args:    args{slug: "dummy", req: &UpdateConversationRequest{}},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name: "Testing correct slug and correct UpdateConversationRequest incorrect json response",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Status:     "200 OK",
+						Body:       io.NopCloser(strings.NewReader(`{`)),
+					}
+				}),
+			}},
+			args:    args{slug: "dummy", req: updateConversationReq},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name: "Testing correct slug and correct UpdateConversationRequest correct json response",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Status:     "200 OK",
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+					}
+				}),
+			}},
+			args:    args{slug: "dummy", req: updateConversationReq},
+			want:    &GetConversationResponse{},
+			wantErr: false,
+		},
+		{
+			name: "Testing reamaze client error",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusNotAcceptable,
+						Status:     "406 Status Not Acceptable",
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+					}
+				}),
+			}},
+			args:    args{slug: "dummy", req: updateConversationReq},
+			want:    nil,
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			c := &Client{
+				baseURL:    tt.fields.baseURL,
+				auth:       tt.fields.auth,
+				httpClient: tt.fields.httpClient,
+			}
+			got, err := c.UpdateConversation(tt.args.slug, tt.args.req)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Client.UpdateConversation() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Client.UpdateConversation() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
