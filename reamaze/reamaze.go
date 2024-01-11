@@ -9,7 +9,7 @@ import (
 	"net/mail"
 )
 
-// Reamaze Client holding
+// Reamaze Client
 type Client struct {
 	baseURL    string
 	auth       string
