@@ -29,9 +29,30 @@ func (c *Client) CreateConversation(req *CreateConversationRequest) (*CreateConv
 	return response, nil
 }
 
-// UpdateConversation updates a conversation
+// UpdateConversation updates a conversation with tags_list,assignee,status,category or brand
 func (c *Client) UpdateConversation(slug string, req *UpdateConversationRequest) (*GetConversationResponse, error) {
 	var response *GetConversationResponse
+	emptyReq := &UpdateConversationRequest{}
+	// checking if we don't have empty request
+	if req == emptyReq {
+		return nil, errors.New("incorrect request, UpdateConversationRequest empty")
+	}
+	// checking if we have slug set
+	if len(slug) == 0 {
+		return nil, errors.New("incorrect slug provided as argument to UpdateConversation, please provide correct slug argument")
+	}
+
+	data, _ := json.Marshal(req)
+	urlEndpoint := conversationsEndpoint + "/" + url.QueryEscape(slug)
+	resp, err := c.reamazeRequest(http.MethodPut, urlEndpoint, data)
+	if err != nil {
+		return nil, err
+	}
+	err = json.Unmarshal(resp, &response)
+	if err != nil {
+
+		return nil, err
+	}
 
 	return response, nil
 }
