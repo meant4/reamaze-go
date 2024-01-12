@@ -86,3 +86,16 @@ type UpdateContactRequest struct {
 		Data              interface{} `json:"data"`
 	} `json:"contact"`
 }
+
+type GetContactIdentitiesResponse struct {
+	Identities []struct {
+		Type       ReamazeIdentifier `json:"type"`
+		Identifier string            `json:"identifier"`
+	} `json:"identities"`
+}
+type CreateContactIdentitiesRequest struct {
+	Identity struct {
+		Type       ReamazeIdentifier `json:"type"`
+		Identifier string            `json:"identifier"`
+	} `json:"identity"`
+}

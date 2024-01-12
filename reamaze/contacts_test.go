@@ -517,3 +517,251 @@ func TestClient_UpdateContact(t *testing.T) {
 		})
 	}
 }
+
+func TestClient_GetContactIdentities(t *testing.T) {
+	type fields struct {
+		baseURL    string
+		auth       string
+		httpClient *http.Client
+	}
+	type args struct {
+		identifier string
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *GetContactIdentitiesResponse
+		wantErr bool
+	}{
+		{
+			name: "Testing empty identifier",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusNotFound,
+						Status:     "404 Status Not Found",
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+					}
+				}),
+			}},
+			args:    args{identifier: ""},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name: "Testing correct identifier",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Status:     "200 Status OK",
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+					}
+				}),
+			}},
+			args:    args{identifier: "dummy@example.com"},
+			want:    &GetContactIdentitiesResponse{},
+			wantErr: false,
+		},
+		{
+			name: "Testing invalid JSON response",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Status:     "200 Status OK",
+						Body:       io.NopCloser(strings.NewReader(`{`)),
+					}
+				}),
+			}},
+			args:    args{identifier: "dummy@example.com"},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name: "Testing invalid response status code",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusNotFound,
+						Status:     "404 Not Found",
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+					}
+				}),
+			}},
+			args:    args{identifier: "dummy@example.com"},
+			want:    nil,
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			c := &Client{
+				baseURL:    tt.fields.baseURL,
+				auth:       tt.fields.auth,
+				httpClient: tt.fields.httpClient,
+			}
+			got, err := c.GetContactIdentities(tt.args.identifier)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Client.GetContactIdentities() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Client.GetContactIdentities() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestClient_CreateContactIdentities(t *testing.T) {
+	type fields struct {
+		baseURL    string
+		auth       string
+		httpClient *http.Client
+	}
+	type args struct {
+		identifier     string
+		req            *CreateContactIdentitiesRequest
+		identifierType []ReamazeIdentifier
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *GetContactIdentitiesResponse
+		wantErr bool
+	}{
+		{
+			name: "Testing empty identifier",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Status:     "200 Status OK",
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+					}
+				}),
+			}},
+			args:    args{identifier: ""},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name: "Testing correct identifier and empty CreateContactIdentitiesRequest",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Status:     "200 Status OK",
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+					}
+				}),
+			}},
+			args:    args{identifier: "dummy@example.com", req: &CreateContactIdentitiesRequest{}},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name: "Testing correct identifier, CreateContactIdentitiesRequest and ReamazeIdentifier",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Status:     "200 Status OK",
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+					}
+				}),
+			}},
+			args: args{identifier: "dummy@example.com", req: &CreateContactIdentitiesRequest{Identity: struct {
+				Type       ReamazeIdentifier "json:\"type\""
+				Identifier string            "json:\"identifier\""
+			}{
+				Type:       ReamazeIdentifierEmail,
+				Identifier: "dummy@example.com",
+			}}, identifierType: []ReamazeIdentifier{ReamazeIdentifierMobile}},
+			want:    &GetContactIdentitiesResponse{},
+			wantErr: false,
+		},
+		{
+			name: "Testing failure of adding Facebook identifier",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Status:     "200 Status OK",
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+					}
+				}),
+			}},
+			args: args{identifier: "dummy@example.com", req: &CreateContactIdentitiesRequest{Identity: struct {
+				Type       ReamazeIdentifier "json:\"type\""
+				Identifier string            "json:\"identifier\""
+			}{
+				Type:       ReamazeIdentifierFacebook,
+				Identifier: "dummy@example.com",
+			}}, identifierType: []ReamazeIdentifier{ReamazeIdentifierMobile}},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name: "Testing invalid JSON response",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Status:     "200 Status OK",
+						Body:       io.NopCloser(strings.NewReader(`{`)),
+					}
+				}),
+			}},
+			args: args{identifier: "dummy@example.com", req: &CreateContactIdentitiesRequest{Identity: struct {
+				Type       ReamazeIdentifier "json:\"type\""
+				Identifier string            "json:\"identifier\""
+			}{
+				Type:       ReamazeIdentifierEmail,
+				Identifier: "dummy@example.com",
+			}}, identifierType: []ReamazeIdentifier{ReamazeIdentifierMobile}},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name: "Testing invalid request response code",
+			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
+				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
+					return &http.Response{
+						StatusCode: http.StatusNotFound,
+						Status:     "404 Not Found",
+						Body:       io.NopCloser(strings.NewReader(`{}`)),
+					}
+				}),
+			}},
+			args: args{identifier: "dummy@example.com", req: &CreateContactIdentitiesRequest{Identity: struct {
+				Type       ReamazeIdentifier "json:\"type\""
+				Identifier string            "json:\"identifier\""
+			}{
+				Type:       ReamazeIdentifierEmail,
+				Identifier: "dummy@example.com",
+			}}, identifierType: []ReamazeIdentifier{ReamazeIdentifierMobile}},
+			want:    nil,
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			c := &Client{
+				baseURL:    tt.fields.baseURL,
+				auth:       tt.fields.auth,
+				httpClient: tt.fields.httpClient,
+			}
+			got, err := c.CreateContactIdentities(tt.args.identifier, tt.args.req, tt.args.identifierType...)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Client.CreateContactIdentities() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Client.CreateContactIdentities() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

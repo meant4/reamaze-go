@@ -3,7 +3,6 @@ package reamaze
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -112,15 +111,65 @@ func (c *Client) UpdateContact(identifier string, req *UpdateContactRequest, ide
 	return response, nil
 }
 
-// GetContactIdentities fgt Contact's Identities  https://www.reamaze.com/api/get_identities
-func (c *Client) GetContactIdentities() (string, error) {
-	fmt.Print("GetContactIdentities Not implemented")
-	return "", nil
+// GetContactIdentities gets Contact's Identities  https://www.reamaze.com/api/get_identities
+// Identities types are one of 'email', 'twitter','facebook', 'instagram', 'igsid' (Instagram-scoped ID), or 'mobile'.
+func (c *Client) GetContactIdentities(identifier string) (*GetContactIdentitiesResponse, error) {
+	var response *GetContactIdentitiesResponse
+	// checking if identifier is set
+	if len(identifier) == 0 {
+		return nil, errors.New("GetContactIdentities identifier cannot be empty, please provide identifier as argument")
+	}
+	urlEndpoint := contactsEndpoint + "/" + url.PathEscape(identifier) + "/identities"
+
+	resp, err := c.reamazeRequest(http.MethodGet, urlEndpoint, []byte{})
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(resp, &response)
+	if err != nil {
+		return nil, err
+	}
+	return response, nil
 }
 
 // CreateContactIdentities creates Contact Identities  https://www.reamaze.com/api/post_identities
 // Call to identities will allow you to attach an email, mobile number, twitter handle or instagram user to a contact.
-func (c *Client) CreateContactIdentities() (string, error) {
-	fmt.Print("CreateContactIdentities Not implemented")
-	return "", nil
+func (c *Client) CreateContactIdentities(identifier string, req *CreateContactIdentitiesRequest, identifierType ...ReamazeIdentifier) (*GetContactIdentitiesResponse, error) {
+	// We set default identifier type to email
+	idType := string(ReamazeIdentifierEmail)
+	// If we have explicitly defined identifier type than we set idType to this identifier type
+	if len(identifierType) > 0 {
+		idType = string(identifierType[0])
+	}
+	var response *GetContactIdentitiesResponse
+
+	emptyReq := &CreateContactIdentitiesRequest{}
+	// checking if identifier is set
+	if len(identifier) == 0 {
+		return nil, errors.New("CreateContactIdentities identifier cannot be empty, please provide identifier as argument")
+	}
+	// checking if we don't have empty request
+	if reflect.DeepEqual(req, emptyReq) {
+		return nil, errors.New("CreateContactIdentities incorrect request, CreateContactIdentities is empty")
+	}
+	// NOTE there is information in the documentation that facebook id cannot be created so we check if the type in the request is not Facebook identifier
+	if req.Identity.Type == ReamazeIdentifierFacebook {
+		return nil, errors.New("CreateContactIdentities cannot create Facebook identites")
+	}
+	// setting up urlEndpoint
+	urlEndpoint := contactsEndpoint + "/" + url.QueryEscape(identifier) + "/identities?identifier_type=" + idType
+	// preparing request
+	data, _ := json.Marshal(req)
+
+	resp, err := c.reamazeRequest(http.MethodPost, urlEndpoint, data)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(resp, &response)
+	if err != nil {
+		return nil, err
+	}
+	return response, nil
 }
