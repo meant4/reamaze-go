@@ -8,6 +8,31 @@ import (
 	"testing"
 )
 
+func TestReamazePhoneNumber_Validate(t *testing.T) {
+	tests := []struct {
+		name string
+		w    ReamazePhoneNumber
+		want bool
+	}{
+		{
+			name: "Testing if we detect incorrect E.164 phone number format",
+			w:    "1",
+			want: false,
+		},
+		{
+			name: "Testing if we detect correct E.164 phone number format",
+			w:    "+1447851987654",
+			want: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.w.Validate(); got != tt.want {
+				t.Errorf("ReamazePhoneNumber.Validate() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
 func TestClient_GetContact(t *testing.T) {
 	type fields struct {
 		baseURL    string
