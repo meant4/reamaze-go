@@ -252,12 +252,12 @@ type CreateConversationResponse struct {
 	Author    struct {
 		ID           int    `json:"id"`
 		Name         string `json:"name"`
-		Data         any    `json:"data"`
+		Data         string `json:"data"`
 		Email        string `json:"email"`
-		Twitter      any    `json:"twitter"`
-		Facebook     any    `json:"facebook"`
-		Instagram    any    `json:"instagram"`
-		Mobile       any    `json:"mobile"`
+		Twitter      string `json:"twitter"`
+		Facebook     string `json:"facebook"`
+		Instagram    string `json:"instagram"`
+		Mobile       string `json:"mobile"`
 		FriendlyName string `json:"friendly_name"`
 		DisplayName  string `json:"display_name"`
 	} `json:"author"`
@@ -278,19 +278,19 @@ type CreateConversationResponse struct {
 		CreatedAt time.Time `json:"created_at"`
 	} `json:"last_customer_message"`
 	Followers []struct {
-		ID           int    `json:"id"`
-		Name         string `json:"name"`
-		Data         any    `json:"data"`
-		Email        string `json:"email"`
-		Twitter      any    `json:"twitter"`
-		Facebook     any    `json:"facebook"`
-		Instagram    any    `json:"instagram"`
-		Mobile       any    `json:"mobile"`
-		FriendlyName string `json:"friendly_name"`
-		DisplayName  string `json:"display_name"`
-		Staff        bool   `json:"staff?"`
-		Customer     bool   `json:"customer?"`
-		Bot          bool   `json:"bot?"`
+		ID           int         `json:"id"`
+		Name         string      `json:"name"`
+		Data         interface{} `json:"data"`
+		Email        string      `json:"email"`
+		Twitter      string      `json:"twitter"`
+		Facebook     string      `json:"facebook"`
+		Instagram    string      `json:"instagram"`
+		Mobile       string      `json:"mobile"`
+		FriendlyName string      `json:"friendly_name"`
+		DisplayName  string      `json:"display_name"`
+		Staff        bool        `json:"staff?"`
+		Customer     bool        `json:"customer?"`
+		Bot          bool        `json:"bot?"`
 	} `json:"followers"`
 	Message struct {
 		Body string `json:"body"`
@@ -351,18 +351,18 @@ type GetConversationResponse struct {
 			JobApplication string `json:"job_application,omitempty"`
 		} `json:"data"`
 		Email        string `json:"email,omitempty"`
-		Twitter      any    `json:"twitter,omitempty"`
-		Facebook     any    `json:"facebook,omitempty"`
-		Instagram    any    `json:"instagram,omitempty"`
-		Mobile       any    `json:"mobile,omitempty"`
+		Twitter      string `json:"twitter,omitempty"`
+		Facebook     string `json:"facebook,omitempty"`
+		Instagram    string `json:"instagram,omitempty"`
+		Mobile       string `json:"mobile,omitempty"`
 		FriendlyName string `json:"friendly_name,omitempty"`
 		DisplayName  string `json:"display_name,omitempty"`
 	} `json:"author"`
-	Assignee       any    `json:"assignee,omitempty"`
-	PermaURL       string `json:"perma_url,omitempty"`
-	TagList        []any  `json:"tag_list,omitempty"`
-	Status         int    `json:"status,omitempty"`
-	DisplaySubject string `json:"display_subject,omitempty"`
+	Assignee       any      `json:"assignee,omitempty"`
+	PermaURL       string   `json:"perma_url,omitempty"`
+	TagList        []string `json:"tag_list,omitempty"`
+	Status         int      `json:"status,omitempty"`
+	DisplaySubject string   `json:"display_subject,omitempty"`
 	Category       struct {
 		Name                     string `json:"name,omitempty"`
 		Slug                     string `json:"slug,omitempty"`
@@ -383,10 +383,10 @@ type GetConversationResponse struct {
 			JobApplication string `json:"job_application,omitempty"`
 		} `json:"data"`
 		Email        string `json:"email,omitempty"`
-		Twitter      any    `json:"twitter,omitempty"`
-		Facebook     any    `json:"facebook,omitempty"`
-		Instagram    any    `json:"instagram,omitempty"`
-		Mobile       any    `json:"mobile,omitempty"`
+		Twitter      string `json:"twitter,omitempty"`
+		Facebook     string `json:"facebook,omitempty"`
+		Instagram    string `json:"instagram,omitempty"`
+		Mobile       string `json:"mobile,omitempty"`
 		FriendlyName string `json:"friendly_name,omitempty"`
 		DisplayName  string `json:"display_name,omitempty"`
 		Staff        bool   `json:"staff?,omitempty"`

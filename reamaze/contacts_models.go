@@ -39,18 +39,18 @@ type GetContactsResponse struct {
 	PageCount  int `json:"page_count"`
 	TotalCount int `json:"total_count"`
 	Contacts   []struct {
-		Name         string    `json:"name"`
-		Data         any       `json:"data"`
-		CreatedAt    time.Time `json:"created_at"`
-		UpdatedAt    time.Time `json:"updated_at"`
-		Email        any       `json:"email"`
-		Twitter      any       `json:"twitter"`
-		Facebook     string    `json:"facebook"`
-		Instagram    any       `json:"instagram"`
-		Mobile       any       `json:"mobile"`
-		FriendlyName string    `json:"friendly_name"`
-		ID           int       `json:"_id"`
-		Notes        []Note    `json:"notes"`
-		ID0          string    `json:"id,omitempty"`
+		Name         string      `json:"name"`
+		Data         interface{} `json:"data"`
+		CreatedAt    time.Time   `json:"created_at"`
+		UpdatedAt    time.Time   `json:"updated_at"`
+		Email        string      `json:"email"`
+		Twitter      string      `json:"twitter"`
+		Facebook     string      `json:"facebook"`
+		Instagram    string      `json:"instagram"`
+		Mobile       string      `json:"mobile"`
+		FriendlyName string      `json:"friendly_name"`
+		ID           int         `json:"_id"`
+		Notes        []Note      `json:"notes"`
+		ID0          string      `json:"id,omitempty"`
 	} `json:"contacts"`
 }
