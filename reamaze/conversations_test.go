@@ -550,9 +550,9 @@ func TestReamazeData_Apply(t *testing.T) {
 	}{
 		{
 			name: "Testing if ReamazeSort is being set in ReamazeOptions with ReamazeSort value",
-			w:    ReamazeData{"dummy": "dummy"},
+			w:    ReamazeData{"dummy": "dummy", "dummy2": "dummy2"},
 			args: args{o: &ReamazeOptions{}},
-			want: &ReamazeOptions{ReamazeData: "data[dummy]=dummy"},
+			want: &ReamazeOptions{ReamazeData: "data[dummy]=dummy&data[dummy2]=dummy2"},
 		},
 		{
 			name: "Testing if ReamazeSort is not being set in ReamazeOptions with when empty",
