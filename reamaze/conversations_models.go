@@ -399,27 +399,6 @@ type GetConversationResponse struct {
 	ReadOnly     bool `json:"readOnly,omitempty"`
 	MessageCount int  `json:"message_count,omitempty"`
 }
-
-type GetContactResponse struct {
-	Name string `json:"name"`
-	Data struct {
-		LastName       string `json:"last_name"`
-		FirstName      string `json:"first_name"`
-		JobApplication string `json:"job_application"`
-	} `json:"data"`
-	CreatedAt    time.Time `json:"created_at"`
-	UpdatedAt    time.Time `json:"updated_at"`
-	Email        string    `json:"email"`
-	Twitter      any       `json:"twitter"`
-	Facebook     any       `json:"facebook"`
-	Instagram    any       `json:"instagram"`
-	Mobile       any       `json:"mobile"`
-	FriendlyName string    `json:"friendly_name"`
-	ID           string    `json:"id"`
-	ID0          int       `json:"_id"`
-	Notes        []any     `json:"notes"`
-}
-
 type GetConversationsResponse struct {
 	PageSize      int                       `json:"page_size,omitempty"`
 	PageCount     int                       `json:"page_count,omitempty"`
