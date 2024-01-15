@@ -87,7 +87,7 @@ type CreateMessageRequest struct {
 		Body       string            `json:"body"`
 		Visibility ReamazeVisibility `json:"visibility,omitempty"`
 		OriginID   string            `json:"origin_id,omitempty"`
-		User       struct {
+		User       *struct {
 			Name  string `json:"name,omitempty"`
 			Email string `json:"email,omitempty"`
 		} `json:"user,omitempty"`
