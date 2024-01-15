@@ -33,7 +33,7 @@ const (
 	ReamazeSortCreatedAt    ReamazeSort   = "create_at"
 )
 
-type Option interface {
+type ConversationsOption interface {
 	Apply(*ReamazeOptions)
 }
 
@@ -156,7 +156,7 @@ func WithTags(w ...string) ReamazeTags {
 	return ReamazeTags(w)
 }
 
-func newSettings(opts []Option) (*ReamazeOptions, error) {
+func newSettings(opts []ConversationsOption) (*ReamazeOptions, error) {
 	var o ReamazeOptions
 	for _, opt := range opts {
 		opt.Apply(&o)
