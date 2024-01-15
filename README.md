@@ -10,4 +10,4 @@ Messages            // DONE
 Reports             // DONE
 Response Templates  // TODO
 Staff               // DONE
-Status Page         // INPROGRESS
+Status Page         // DONE
