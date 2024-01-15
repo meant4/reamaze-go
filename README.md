@@ -7,7 +7,7 @@ Contacts            // DONE
 Notes               // DONE
 Conversations       // DONE
 Messages            // DONE
-Reports             // INPROGRESS
+Reports             // DONE
 Response Templates  // TODO
 Staff               // DONE
 Status Page         // TODO
