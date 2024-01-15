@@ -121,3 +121,43 @@ type GetArticlesResponse struct {
 		} `json:"topic,omitempty"`
 	} `json:"articles,omitempty"`
 }
+type ReamazeArticle struct {
+	Title     string    `json:"title,omitempty"`
+	Body      string    `json:"body,omitempty"`
+	Slug      string    `json:"slug,omitempty"`
+	Status    int       `json:"status,omitempty"`
+	CreatedAt time.Time `json:"created_at,omitempty"`
+	UpdatedAt time.Time `json:"updated_at,omitempty"`
+	URL       string    `json:"url,omitempty"`
+	Author    struct {
+		ID           int    `json:"id,omitempty"`
+		Name         string `json:"name,omitempty"`
+		Data         any    `json:"data,omitempty"`
+		Email        string `json:"email,omitempty"`
+		Twitter      string `json:"twitter,omitempty"`
+		Facebook     string `json:"facebook,omitempty"`
+		Instagram    string `json:"instagram,omitempty"`
+		Mobile       string `json:"mobile,omitempty"`
+		FriendlyName string `json:"friendly_name,omitempty"`
+		DisplayName  string `json:"display_name,omitempty"`
+	} `json:"author,omitempty"`
+	EmbeddedURL string `json:"embedded_url,omitempty"`
+	Topic       struct {
+		Name string `json:"name,omitempty"`
+		Slug string `json:"slug,omitempty"`
+	} `json:"topic,omitempty"`
+}
+
+type GetArticleResponse ReamazeArticle
+type UpdateArticleResponse ReamazeArticle
+type UpdateArticleRequest ReamazeArticle
+type CreateArticleResponse ReamazeArticle
+
+type CreateArticleRequest struct {
+	Article struct {
+		Title   string               `json:"title,omitempty"`
+		Body    string               `json:"body,omitempty"`
+		Status  ReamazeArticleStatus `json:"status,omitempty"`
+		TopicID string               `json:"topic_id,omitempty"`
+	} `json:"article,omitempty"`
+}

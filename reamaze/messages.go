@@ -3,7 +3,6 @@ package reamaze
 import (
 	"encoding/json"
 	"errors"
-	"log"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -40,9 +39,9 @@ func (c *Client) CreateMessage(slug string, req *CreateMessageRequest) (*CreateM
 	}
 
 	urlEndpoint := conversationsEndpoint + "/" + url.PathEscape(slug) + "/messages"
-	log.Println(urlEndpoint)
+
 	data, _ := json.Marshal(req)
-	log.Println(string(data))
+
 	resp, err := c.reamazeRequest(http.MethodPost, urlEndpoint, data)
 	if err != nil {
 		return nil, err
