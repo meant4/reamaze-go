@@ -10,6 +10,7 @@ import (
 type ReamazePhoneNumber string
 type ReamazeIdentifier string
 
+const contactsEndpoint string = "/api/v1/contacts"
 const (
 	ReamazeIdentifierEmail     ReamazeIdentifier = "email"
 	ReamazeIdentifierMobile    ReamazeIdentifier = "mobile"

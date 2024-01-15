@@ -16,9 +16,6 @@ type Client struct {
 	httpClient *http.Client
 }
 
-const conversationsEndpoint string = "/api/v1/conversations"
-const contactsEndpoint string = "/api/v1/contacts"
-
 // NewClient creates a new re:amaze client that uses the given workspace with user and pass.
 func NewClient(email, apiToken, brand string) (*Client, error) {
 	// Checking email
