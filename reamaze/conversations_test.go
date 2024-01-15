@@ -214,7 +214,7 @@ func TestClient_GetConversations(t *testing.T) {
 		httpClient *http.Client
 	}
 	type args struct {
-		o []Option
+		o []ConversationsOption
 	}
 	tests := []struct {
 		name    string
@@ -1003,7 +1003,7 @@ func TestWithTags(t *testing.T) {
 
 func Test_newSettings(t *testing.T) {
 	type args struct {
-		opts []Option
+		opts []ConversationsOption
 	}
 	tests := []struct {
 		name    string
@@ -1019,7 +1019,7 @@ func Test_newSettings(t *testing.T) {
 		},
 		{
 			name:    "Testing newSettings WithFilter Option ReamazeFilterAll",
-			args:    args{opts: []Option{WithFilter(ReamazeFilterAll)}},
+			args:    args{opts: []ConversationsOption{WithFilter(ReamazeFilterAll)}},
 			want:    &ReamazeOptions{ReamazeFilter: string("filter=" + ReamazeFilterAll)},
 			wantErr: false,
 		},

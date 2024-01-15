@@ -59,7 +59,7 @@ func (c *Client) UpdateConversation(slug string, req *UpdateConversationRequest)
 }
 
 // GetConversations retrieve conversations for the Brand
-func (c *Client) GetConversations(o ...Option) (*GetConversationsResponse, error) {
+func (c *Client) GetConversations(o ...ConversationsOption) (*GetConversationsResponse, error) {
 	var response *GetConversationsResponse
 	settings, _ := newSettings(o)
 	urlEndpoint := conversationsEndpoint + settings.GetQuery()
