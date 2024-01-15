@@ -1,13 +1,13 @@
 # reamaze-go
 Go re:amaze 
 
-Articles            // TODO
-Channels            // TODO
+Articles            // INPROGRESS
+Channels            // DONE
 Contacts            // DONE
 Notes               // DONE
 Conversations       // DONE
 Messages            // DONE
-Reports             // TODO
+Reports             // INPROGRESS
 Response Templates  // TODO
-Staff               // TODO
+Staff               // INPROGRESS
 Status Page         // TODO
