@@ -10,6 +10,7 @@ import (
 
 // GetContacts retrieves all contacts for the Account
 // Note that unlike other resources, contacts are tied to the account, not the individual brand.
+// TODO: adding params q,data,sort,type,page
 func (c *Client) GetContacts() (*GetContactsResponse, error) {
 	var response *GetContactsResponse
 	urlEndpoint := contactsEndpoint
