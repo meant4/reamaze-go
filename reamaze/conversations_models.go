@@ -21,6 +21,8 @@ type ReamazeCategory string
 type ReamazeTags []string
 type ReamazeData map[string]string
 
+const conversationsEndpoint string = "/api/v1/conversations"
+
 const (
 	ReamazeFilterArchived   ReamazeFilter = "archived"
 	ReamazeFilterOpen       ReamazeFilter = "open"
