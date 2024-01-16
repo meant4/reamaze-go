@@ -68,18 +68,18 @@ func main() {
     // Initialize Re:amaze client
     reamazeClient, err := reamaze.NewClient(email, apiToken, brand)
     if err != nil {
-		log.Println(err)
-	}
+        log.Println(err)
+    }
 
     // Example: Get a list of articles
     articles, err := reamazeClient.GetArticles()
     if err != nil {
-		fmt.Println("Error:", err)
-		return
-	}
+        fmt.Println("Error:", err)
+        return
+    }
 
     // Process the list of articles as needed
-	fmt.Println("Articles:", articles)
+    fmt.Println("Articles:", articles)
 }
 ```
 
