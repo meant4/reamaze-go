@@ -8,7 +8,7 @@ import (
 	"reflect"
 )
 
-// call to messages will allow you to retrieve individual messages for all conversations in the Brand
+// GetMessages call to messages will allow you to retrieve individual messages for all conversations in the Brand
 // https://www.reamaze.com/api/get_messages
 func (c *Client) GetMessages() (*GetMessagesResponse, error) {
 	var response *GetMessagesResponse
