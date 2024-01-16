@@ -43,7 +43,7 @@ Before getting started, ensure you have the following:
 To incorporate the Re:amaze Golang API client into your project, use the following `go get` command:
 
 ```bash
-go get -u github.com/panperla/reamaze-go/reamaze
+go get -u github.com/panperla/reamaze-go/reamaze@v1.0.0
 ```
 
 ## Example Usage
