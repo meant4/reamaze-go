@@ -46,6 +46,7 @@ go get -u github.com/panperla/reamaze-go/reamaze
 ## Example Usage
 
 ### Retrieving Articles
+
 ```go
 package main
 
@@ -58,18 +59,18 @@ import (
 func main() {
     // Replace these values with your Re:amaze credentials
     email := "your-email@example.com"
-	apiToken := "your-api-token"
-	brand := "your-brand"
+    apiToken := "your-api-token"
+    brand := "your-brand"
 
     // Initialize Re:amaze client
-	reamazeClient, err := reamaze.NewClient(email, apiToken, brand)
-	if err != nil {
+    reamazeClient, err := reamaze.NewClient(email, apiToken, brand)
+    if err != nil {
 		log.Println(err)
 	}
 
     // Example: Get a list of articles
-	articles, err := reamazeClient.GetArticles()
-	if err != nil {
+    articles, err := reamazeClient.GetArticles()
+    if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
