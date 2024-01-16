@@ -1,9 +1,9 @@
 # reamaze-go: Re:amaze Golang API Client
 
 ![testing](https://github.com/panperla/reamaze-go/actions/workflows/tests.yml/badge.svg)
-[![codecov](https://codecov.io/gh/panperla/reamaze-go/graph/badge.svg?token=R6888TMAL6)](https://codecov.io/gh/panperla/reamaze-go){:target="_blank"}
+[![codecov](https://codecov.io/gh/panperla/reamaze-go/graph/badge.svg?token=R6888TMAL6)](https://codecov.io/gh/panperla/reamaze-go)
 [![License](https://img.shields.io/github/license/panperla/reamaze-go)](https://github.com/panperla/reamaze-go/blob/main/LICENSE)
-[![godoc](https://godoc.org/github.com/panperla/reamaze-go?status.svg)](https://pkg.go.dev/github.com/panperla/reamaze-go@v0.0.0-20240116210523-dc1b94da3bce/reamaze){:target="_blank"}
+[![godoc](https://godoc.org/github.com/panperla/reamaze-go?status.svg)](https://pkg.go.dev/github.com/panperla/reamaze-go@v0.0.0-20240116210523-dc1b94da3bce/reamaze)
 
 ## Overview
 
@@ -14,7 +14,7 @@ Re:amaze exposes a robust API that this client encapsulates and simplifies for s
 
 ## Endpoint Coverage
 
-**reamaze-go** covers all [https://www.reamaze.com/api](https://www.reamaze.com/api){:target="_blank"} REST API methods:
+**reamaze-go** covers all [https://www.reamaze.com/api](https://www.reamaze.com/api) REST API methods:
 
 - **ARTICLES:** Retrieving Articles, Get Article, Creating Articles, Updating Articles
 - **CHANNELS:** Retrieving Channels, Retrieving Channels
@@ -85,7 +85,7 @@ func main() {
 
 Refer to the documentation for detailed information on each endpoint and usage examples.
 
-Also please visit [godoc](https://pkg.go.dev/github.com/panperla/reamaze-go@v0.0.0-20240116210523-dc1b94da3bce/reamaze){:target="_blank"} for all available methods and types in this package
+Also please visit [godoc](https://pkg.go.dev/github.com/panperla/reamaze-go@v0.0.0-20240116210523-dc1b94da3bce/reamaze) for all available methods and types in this package
 
 ## Contribution Guidelines
 
@@ -93,7 +93,7 @@ We welcome contributions, bug reports, and feature requests. Fork and make a Pul
 
 ## Sponsorship
 
-The development of this package was sponsored by [Meant4.com Software House](https://meant4.com/?utm_source=github_reamaze){:target="_blank"}
+The development of this package was sponsored by [Meant4.com Software House](https://meant4.com/?utm_source=github_reamaze)
 
 ## License
 
