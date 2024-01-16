@@ -28,7 +28,7 @@ type CreateResponseTemplateRequest struct {
 	ResponseTemplate struct {
 		Name       string `json:"name"`
 		Body       string `json:"body"`
-		IsPersonal bool   `json:"is_personal"`
+		IsPersonal int    `json:"is_personal"`
 	} `json:"response_template"`
 }
 
