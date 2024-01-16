@@ -81,6 +81,7 @@ func main() {
 ```
 
 Refer to the documentation for detailed information on each endpoint and usage examples.
+
 Also please see [godoc](https://pkg.go.dev/github.com/panperla/reamaze-go@v0.0.0-20240116210523-dc1b94da3bce/reamaze) for all availanle methods. 
 
 ## Contribution Guidelines
