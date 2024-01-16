@@ -3,14 +3,14 @@ package reamaze
 import "time"
 
 type Note struct {
-	ID        string    `json:"id"`
-	Note      string    `json:"note"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	ID        string    `json:"id,omitempty"`
+	Note      string    `json:"note,omitempty"`
+	CreatedAt time.Time `json:"created_at,omitempty"`
+	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	Creator   struct {
-		Email string `json:"email"`
-		Name  string `json:"name"`
-	} `json:"creator"`
+		Email string `json:"email,omitempty"`
+		Name  string `json:"name,omitempty"`
+	} `json:"creator,omitempty"`
 }
 
 type GetNotesResponse []Note

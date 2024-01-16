@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// GetNotes gets all the Notes for provided identifier
+// GetNotes gets all the Notes for provided identifier https://www.reamaze.com/api/get_notes
 func (c *Client) GetNotes(identifier string) (*GetNotesResponse, error) {
 	var response *GetNotesResponse
 	// checking if identifier is set
@@ -29,10 +29,13 @@ func (c *Client) GetNotes(identifier string) (*GetNotesResponse, error) {
 	return response, nil
 }
 
-// CreateNote will allow you to attach an note to a contact
+// CreateNote will allow you to attach an note to a contact https://www.reamaze.com/api/post_notes
+// This allows you to create one note for a contact. You can also create many notes at a time for a contact through the update contacts endpoint
+// creator_email is optional and should be the staff email address for the Re:amaze staff user who you want to be attributed to creating the note. Otherwise, the creator will be the user making the request.
+// created_at is optional and will default to the current time.
 func (c *Client) CreateNote(identifier string, req *CreateNoteRequest) (*CreateNoteResponse, error) {
 	var response *CreateNoteResponse
-	emptyReq := &CreateContactRequest{}
+	emptyReq := &CreateNoteRequest{}
 	// checking if we don't have empty request
 	if reflect.DeepEqual(req, emptyReq) {
 		return nil, errors.New("CreateNote incorrect request, CreateNoteRequest is empty")
@@ -57,10 +60,10 @@ func (c *Client) CreateNote(identifier string, req *CreateNoteRequest) (*CreateN
 	return response, nil
 }
 
-// UpdateNote will allow you to update a note with the given id
+// UpdateNote will allow you to update a note with the given id https://www.reamaze.com/api/put_note
 func (c *Client) UpdateNote(identifier string, noteID string, req *UpdateNoteRequest) (*UpdateNoteResponse, error) {
 	var response *UpdateNoteResponse
-	emptyReq := &CreateContactRequest{}
+	emptyReq := &UpdateNoteRequest{}
 	// checking if we don't have empty request
 	if reflect.DeepEqual(req, emptyReq) {
 		return nil, errors.New("UpdateNote incorrect request, UpdateNoteRequest is empty")
@@ -88,7 +91,7 @@ func (c *Client) UpdateNote(identifier string, noteID string, req *UpdateNoteReq
 	return response, nil
 }
 
-// DeleteNote will delete a note with the given id from the contact
+// DeleteNote will delete a note with the given id from the contact https://www.reamaze.com/api/delete_note
 func (c *Client) DeleteNote(identifier string, noteID string) (*DeleteNoteResponse, error) {
 	var response *DeleteNoteResponse
 
