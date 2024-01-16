@@ -7,7 +7,10 @@
 
 ## Overview
 
-This repository houses a Golang package designed to serve as a client for interacting with the Re:amaze REST API. Re:amaze, a platform renowned for its customer support and engagement capabilities, exposes a robust API that this client encapsulates and simplifies for seamless integration into Golang applications.
+This repository houses a Golang package designed to serve as a client for interacting with the Re:amaze REST API. 
+Re:amaze is providing businesses with a unified platform for customer communication, support, and engagement. With features such as real-time messaging, automated responses, and comprehensive reporting, Re:amaze empowers organizations to deliver exceptional customer experiences.
+
+Re:amaze exposes a robust API that this client encapsulates and simplifies for seamless integration into Golang applications.
 
 ## Endpoint Coverage
 
@@ -90,7 +93,7 @@ We welcome contributions, bug reports, and feature requests. Fork and make a Pul
 
 ## Sponsorship
 
-The development of this package was sponsored by [Meant4.com Software House](https://meant4.com/?utm_source=github_reamaze).
+The development of this package was sponsored by [Meant4.com Software House](https://meant4.com/?utm_source=github_reamaze)
 
 ## License
 
