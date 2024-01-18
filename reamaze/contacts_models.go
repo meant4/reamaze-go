@@ -80,11 +80,11 @@ type CreateContactRequest struct {
 
 type UpdateContactRequest struct {
 	Contact struct {
-		Name              string      `json:"name"`
-		FriendlyName      string      `json:"friendly_name"`
-		ExternalAvatarURL string      `json:"external_avatar_url"`
-		Notes             []string    `json:"notes"`
-		Data              interface{} `json:"data"`
+		Name              string   `json:"name"`
+		FriendlyName      string   `json:"friendly_name"`
+		ExternalAvatarURL string   `json:"external_avatar_url"`
+		Notes             []string `json:"notes"`
+		Data              any      `json:"data"`
 	} `json:"contact"`
 }
 
