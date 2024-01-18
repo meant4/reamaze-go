@@ -24,7 +24,6 @@ func (c *Client) CreateConversation(req *CreateConversationRequest) (*CreateConv
 
 	err = json.Unmarshal(resp, &response)
 	if err != nil {
-
 		return nil, err
 	}
 	return response, nil
