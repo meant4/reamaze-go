@@ -15,6 +15,22 @@ func TestClient_CreateConversation(t *testing.T) {
 	correctConversation.Conversation.Category = "test"
 	correctConversation.Conversation.Message.Body = "test"
 	correctConversation.Conversation.User.Email = "test"
+	correctConversation.Conversation.Data = struct {
+		FirstName string `json:"first_name,omitempty"`
+		LastName  string `json:"last_name,omitempty"`
+	}{
+		FirstName: "dummy",
+		LastName:  "dummy",
+	}
+	correctConversation.Conversation.User.Data = struct {
+		JobApplication bool   `json:"job_application,omitempty"`
+		FirstName      string `json:"first_name,omitempty"`
+		LastName       string `json:"last_name,omitempty"`
+	}{
+		JobApplication: true,
+		FirstName:      "dummy",
+		LastName:       "dummy",
+	}
 
 	type fields struct {
 		baseURL    string

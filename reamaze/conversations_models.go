@@ -245,16 +245,12 @@ type CreateConversationResponse struct {
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 	Origin    int       `json:"origin"`
-	Data      struct {
-		Nda       string `json:"NDA"`
-		Firstname string `json:"Firstname"`
-		Lastname  string `json:"Lastname"`
-	} `json:"data"`
-	HoldUntil any `json:"hold_until"`
+	Data      any       `json:"data"`
+	HoldUntil any       `json:"hold_until"`
 	Author    struct {
 		ID           int    `json:"id"`
 		Name         string `json:"name"`
-		Data         string `json:"data"`
+		Data         any    `json:"data"`
 		Email        string `json:"email"`
 		Twitter      string `json:"twitter"`
 		Facebook     string `json:"facebook"`
@@ -280,19 +276,19 @@ type CreateConversationResponse struct {
 		CreatedAt time.Time `json:"created_at"`
 	} `json:"last_customer_message"`
 	Followers []struct {
-		ID           int         `json:"id"`
-		Name         string      `json:"name"`
-		Data         interface{} `json:"data"`
-		Email        string      `json:"email"`
-		Twitter      string      `json:"twitter"`
-		Facebook     string      `json:"facebook"`
-		Instagram    string      `json:"instagram"`
-		Mobile       string      `json:"mobile"`
-		FriendlyName string      `json:"friendly_name"`
-		DisplayName  string      `json:"display_name"`
-		Staff        bool        `json:"staff?"`
-		Customer     bool        `json:"customer?"`
-		Bot          bool        `json:"bot?"`
+		ID           int    `json:"id"`
+		Name         string `json:"name"`
+		Data         any    `json:"data"`
+		Email        string `json:"email"`
+		Twitter      string `json:"twitter"`
+		Facebook     string `json:"facebook"`
+		Instagram    string `json:"instagram"`
+		Mobile       string `json:"mobile"`
+		FriendlyName string `json:"friendly_name"`
+		DisplayName  string `json:"display_name"`
+		Staff        bool   `json:"staff?"`
+		Customer     bool   `json:"customer?"`
+		Bot          bool   `json:"bot?"`
 	} `json:"followers"`
 	Message struct {
 		Body string `json:"body"`
@@ -309,16 +305,16 @@ type CreateConversationRequest struct {
 		Status              ReamazeStatus `json:"status,omitempty"`
 		SupressNotification bool          `json:"suppress_notifications,omitempty"` // You can optionally pass in a message[suppress_notifications] boolean attribute with a value of true to prevent Reamaze from sending any email (or integration) notifications related to this message.
 		SupressAutoresolve  bool          `json:"suppress_autoresolve,omitempty"`   // You can optionally pass in a message[suppress_autoresolve] boolean attribute with a value of true to prevent Reamaze from marking the conversation as resolved when message[user] is a staff user.
-		Data                interface{}   `json:"data,omitempty"`
+		Data                any           `json:"data,omitempty"`
 		Message             struct {
 			Body        string   `json:"body,omitempty"`
 			Attachment  string   `json:"attachment,omitempty"`
 			Attachments []string `json:"attachments,omitempty"`
 		} `json:"message,omitempty"`
 		User struct {
-			Name  string      `json:"name,omitempty"`
-			Email string      `json:"email,omitempty"`
-			Data  interface{} `json:"data,omitempty"`
+			Name  string `json:"name,omitempty"`
+			Email string `json:"email,omitempty"`
+			Data  any    `json:"data,omitempty"`
 		} `json:"user,omitempty"`
 	} `json:"conversation,omitempty"`
 }
@@ -326,7 +322,7 @@ type UpdateConversationRequest struct {
 	Conversation struct {
 		TagList  []string      `json:"tag_list,omitempty"`
 		Status   ReamazeStatus `json:"status,omitempty"`
-		Data     interface{}   `json:"data,omitempty"`
+		Data     any           `json:"data,omitempty"`
 		Assignee string        `json:"assignee,omitempty"`
 		Category string        `json:"category,omitempty"`
 		Brand    string        `json:"brand,omitempty"`
@@ -339,19 +335,12 @@ type GetConversationResponse struct {
 	CreatedAt time.Time `json:"created_at,omitempty"`
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	Origin    int       `json:"origin,omitempty"`
-	Data      struct {
-		LastName  string `json:"last_name,omitempty"`
-		FirstName string `json:"first_name,omitempty"`
-	} `json:"data,omitempty"`
-	HoldUntil any `json:"hold_until,omitempty"`
+	Data      any       `json:"data,omitempty"`
+	HoldUntil any       `json:"hold_until,omitempty"`
 	Author    struct {
-		ID   int    `json:"id,omitempty"`
-		Name string `json:"name,omitempty"`
-		Data struct {
-			LastName       string `json:"last_name,omitempty"`
-			FirstName      string `json:"first_name,omitempty"`
-			JobApplication string `json:"job_application,omitempty"`
-		} `json:"data"`
+		ID           int    `json:"id,omitempty"`
+		Name         string `json:"name,omitempty"`
+		Data         any    `json:"data"`
 		Email        string `json:"email,omitempty"`
 		Twitter      string `json:"twitter,omitempty"`
 		Facebook     string `json:"facebook,omitempty"`
@@ -377,13 +366,9 @@ type GetConversationResponse struct {
 		CreatedAt time.Time `json:"created_at,omitempty"`
 	} `json:"last_customer_message,omitempty"`
 	Followers []struct {
-		ID   int    `json:"id,omitempty"`
-		Name string `json:"name,omitempty"`
-		Data struct {
-			LastName       string `json:"last_name,omitempty"`
-			FirstName      string `json:"first_name,omitempty"`
-			JobApplication string `json:"job_application,omitempty"`
-		} `json:"data"`
+		ID           int    `json:"id,omitempty"`
+		Name         string `json:"name,omitempty"`
+		Data         any    `json:"data"`
 		Email        string `json:"email,omitempty"`
 		Twitter      string `json:"twitter,omitempty"`
 		Facebook     string `json:"facebook,omitempty"`
