@@ -4,6 +4,9 @@
 [![codecov](https://codecov.io/gh/panperla/reamaze-go/graph/badge.svg?token=R6888TMAL6)](https://codecov.io/gh/panperla/reamaze-go)
 [![License](https://img.shields.io/github/license/panperla/reamaze-go)](https://github.com/panperla/reamaze-go/blob/main/LICENSE)
 [![godoc](https://godoc.org/github.com/panperla/reamaze-go?status.svg)](https://pkg.go.dev/github.com/panperla/reamaze-go@v0.0.0-20240116210523-dc1b94da3bce/reamaze)
+[![GitHub release](https://img.shields.io/github/release/panperla/reamaze-go.svg)](https://github.com/panperla/reamaze-go/releases/latest)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
 
 ## Overview
 
