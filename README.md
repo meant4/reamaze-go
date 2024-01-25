@@ -1,10 +1,10 @@
 # reamaze-go: Re:amaze Golang API Client
 
-![testing](https://github.com/panperla/reamaze-go/actions/workflows/tests.yml/badge.svg)
-[![codecov](https://codecov.io/gh/panperla/reamaze-go/graph/badge.svg?token=R6888TMAL6)](https://codecov.io/gh/panperla/reamaze-go)
-[![License](https://img.shields.io/github/license/panperla/reamaze-go)](https://github.com/panperla/reamaze-go/blob/main/LICENSE)
-[![godoc](https://godoc.org/github.com/panperla/reamaze-go?status.svg)](https://pkg.go.dev/github.com/panperla/reamaze-go@v0.0.0-20240116210523-dc1b94da3bce/reamaze)
-[![GitHub release](https://img.shields.io/github/release/panperla/reamaze-go.svg)](https://github.com/panperla/reamaze-go/releases/latest)
+![testing](https://github.com/meant4/reamaze-go/actions/workflows/tests.yml/badge.svg)
+[![codecov](https://codecov.io/gh/meant4/reamaze-go/graph/badge.svg?token=R6888TMAL6)](https://codecov.io/gh/meant4/reamaze-go)
+[![License](https://img.shields.io/github/license/meant4/reamaze-go)](https://github.com/meant4/reamaze-go/blob/main/LICENSE)
+[![godoc](https://godoc.org/github.com/meant4/reamaze-go?status.svg)](https://pkg.go.dev/github.com/meant4/reamaze-go@v0.0.0-20240116210523-dc1b94da3bce/reamaze)
+[![GitHub release](https://img.shields.io/github/release/meant4/reamaze-go.svg)](https://github.com/meant4/reamaze-go/releases/latest)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 
@@ -46,7 +46,7 @@ Before getting started, ensure you have the following:
 To incorporate the Re:amaze Golang API client into your project, use the following `go get` command:
 
 ```bash
-go get -u github.com/panperla/reamaze-go/reamaze
+go get -u github.com/meant4/reamaze-go/reamaze
 ```
 
 ## Example Usage
@@ -58,7 +58,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/panperla/reamaze-go/reamaze"
+	"github.com/meant4/reamaze-go/reamaze"
 )
 
 
@@ -88,7 +88,7 @@ func main() {
 
 Refer to the documentation for detailed information on each endpoint and usage examples.
 
-Also please visit [godoc](https://pkg.go.dev/github.com/panperla/reamaze-go@v0.0.0-20240116210523-dc1b94da3bce/reamaze) for all available methods and types in this package
+Also please visit [godoc](https://pkg.go.dev/github.com/meant4/reamaze-go@v0.0.0-20240116210523-dc1b94da3bce/reamaze) for all available methods and types in this package
 
 ## Contribution Guidelines
 
