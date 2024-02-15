@@ -1,6 +1,7 @@
 # reamaze-go: Re:amaze Golang API Client
 
 ![testing](https://github.com/meant4/reamaze-go/actions/workflows/tests.yml/badge.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/meant4/reamaze-go)](https://goreportcard.com/badge/github.com/meant4/reamaze-go)
 [![codecov](https://codecov.io/gh/meant4/reamaze-go/graph/badge.svg?token=R6888TMAL6)](https://codecov.io/gh/meant4/reamaze-go)
 [![License](https://img.shields.io/github/license/meant4/reamaze-go)](https://github.com/meant4/reamaze-go/blob/main/LICENSE)
 [![godoc](https://godoc.org/github.com/meant4/reamaze-go?status.svg)](https://pkg.go.dev/github.com/meant4/reamaze-go@v0.0.0-20240116210523-dc1b94da3bce/reamaze)

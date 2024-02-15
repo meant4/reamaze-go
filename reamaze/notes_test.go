@@ -153,7 +153,7 @@ func TestClient_CreateNote(t *testing.T) {
 			wantErr: true,
 		},
 		{
-			name: "Testing incorect endpoint reponse",
+			name: "Testing incorrect endpoint response",
 			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
 				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
 					return &http.Response{
@@ -168,7 +168,7 @@ func TestClient_CreateNote(t *testing.T) {
 			wantErr: true,
 		},
 		{
-			name: "Testing incorect JSON reponse",
+			name: "Testing incorrect JSON response",
 			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
 				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
 					return &http.Response{
@@ -183,7 +183,7 @@ func TestClient_CreateNote(t *testing.T) {
 			wantErr: true,
 		},
 		{
-			name: "Testing correct reponse",
+			name: "Testing correct response",
 			fields: fields{baseURL: "https://dummy.reamaze.io", auth: "dummy", httpClient: &http.Client{
 				Transport: RoundTripFunc(func(req *http.Request) *http.Response {
 					return &http.Response{
