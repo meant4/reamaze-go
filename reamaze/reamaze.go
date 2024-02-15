@@ -60,7 +60,7 @@ func (c *Client) reamazeRequest(method string, endpoint string, payload []byte) 
 		return nil, err
 	}
 	defer res.Body.Close()
-	// Checking if we have response status code withing acceptable numbers 200-299
+	// Checking if we have response status code within acceptable numbers 200-299
 	if res.StatusCode >= 300 || res.StatusCode < 200 {
 		return nil, errors.New(res.Status)
 	}
