@@ -1,0 +1,25 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c','docker build --no-cache -t gcr.io/$PROJECT_ID/${_APP_NAME}:$SHORT_SHA .']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push','gcr.io/$PROJECT_ID/${_APP_NAME}:$SHORT_SHA']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+    - 'beta'
+    - 'run'
+    - 'deploy'
+    - '${_APP_NAME}'
+    - '--image=gcr.io/$PROJECT_ID/${_APP_NAME}:$SHORT_SHA'
+    - '--set-env-vars=REAMAZE_EMAIL=$_REAMAZE_EMAIL,REAMAZE_BRAND=$_REAMAZE_BRAND,REAMAZE_CATEGORY=$_REAMAZE_CATEGORY'
+    - '--set-secrets=REAMAZE_API_TOKEN=${_REAMAZE_API_TOKEN_SECRET_NAME}'
+    - '--region=${_REGION}'
+    - '--platform=managed'
+    - '--allow-unauthenticated'
+substitutions:
+  _APP_NAME: "yourendpointservicename"
+  _REAMAZE_EMAIL: "dummy@example.com"
+  _REAMAZE_API_TOKEN_SECRET_NAME: "reamaze_api_token:latest"
+  _REAMAZE_BRAND: "somebrand"
+  _REAMAZE_CATEGORY: "reamazecategory"
+  _REGION: "europe-west4"
